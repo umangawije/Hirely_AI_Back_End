@@ -5,9 +5,13 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    Description: {
+    description: {
         type:String,
         required:true,
+    },
+    type:{
+        type:String,
+        required: true,
     },
     location: {
         type:String,
@@ -22,5 +26,5 @@ const jobSchema = new mongoose.Schema({
 
 });
 
-const job = mongoose.model("Job",jobSchema);
-export default job;
+const Job = mongoose.model("Job",jobSchema);
+export default Job;

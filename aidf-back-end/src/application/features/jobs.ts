@@ -1,19 +1,12 @@
 import { NextFunction, Request,Response } from "express";
+import Job from "../../persistance/entities/jobs";
 
-const jobs = [
-    {
-        _id: "xyz",
-        name: "umanag"
-    },
-    {
-        _id: "abc",
-        name: "kamal"
-    }
-]
+
 
 
 export const getJobs = async(req:Request,res:Response) => {
     try{
+        const jobs = await Job.find();
         return res.status(200).json(jobs);
     }catch(error){
         return res.status(500).send();
@@ -22,27 +15,24 @@ export const getJobs = async(req:Request,res:Response) => {
 
 export const createJobs = async(req:Request,res:Response) => {
     try{
-        console.log(req.body)
-        jobs.push(req.body)
+        const job = req.body;
         
-        return res.status(200).json(jobs);
+        await Job.create(job)
+
+        return res.status(200).send();
     }catch(error){
         return res.status(500).send();
     }
 };
 
 
-export const getOneJob = async(req:Request,res:Response) => {
+export const getJobById = async(req:Request,res:Response) => {
     try{
-        console.log(req.params.id)
+       console.log(req.params.id)
+       
+        const job = Job.findById(req.params.id)
 
-        let newJob = null
-        jobs.map(jb => {
-            if(jb._id == req.params.id){
-                newJob = jb
-            }
-        })
-        return res.status(200).json(newJob);
+        return res.status(200).json(job);
     }catch(error){
         return res.status(500).send();
     }
