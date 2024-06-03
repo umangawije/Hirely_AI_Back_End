@@ -28,10 +28,8 @@ export const createJobs = async(req:Request,res:Response) => {
 
 export const getJobById = async(req:Request,res:Response) => {
     try{
-       console.log(req.params.id)
-       
-        const job = Job.findById(req.params.id)
-
+        const {id} = req.params;     
+        const job = await Job.findById(id)
         return res.status(200).json(job);
     }catch(error){
         return res.status(500).send();
