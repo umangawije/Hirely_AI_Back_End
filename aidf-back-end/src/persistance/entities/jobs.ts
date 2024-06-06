@@ -20,7 +20,9 @@ const jobSchema = new mongoose.Schema({
     questions: {
         type: [String],
         default: [
-            "Share your academic background and highlight key programming concepts you have mastered."
+            "Share your academic background and highlight key programming concepts you have mastered fk. How has your education shaped your current tech Skill set ?",
+            "Describe your professional development, emphasizing any certifications obtained. How have these certification enriched your technical abilities, and can you provide an example of their practical application?",
+            "Discuss notable projects in your programming experience. What challenges did you face, and how did you apply your skills to overcome them?"
         ],
     }
 
